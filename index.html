@@ -21,7 +21,7 @@
         //引入ServiceWorkerToolbox后
         console.log(toolbox)
         console.log(toolbox.router)
-        toolbox.router.get('/chaoyidaozhan/images/*', event => {
+        toolbox.router.get('/chaoydaozhan/images/*', event => {
             console.log(1)
             return caches.open('twemojii').then(res => {
                 console.log(2)
