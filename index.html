@@ -7,15 +7,29 @@
     <title>PWA</title>
 </head>
 <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js"></script>
     <script>
-        //注册 ServiceWorker
-        if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').then(registration => {
-                console.log('ServiceWorker registration successful with scopes:', registration.scope)
-            }).catch(err => {
-                console.log('ServiceWorker registration failed:', err)
+        // //注册 ServiceWorker
+        // if('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.register('./sw.js').then(registration => {
+        //         console.log('ServiceWorker registration successful with scopes:', registration.scope)
+        //     }).catch(err => {
+        //         console.log('ServiceWorker registration failed:', err)
+        //     })
+        // }
+
+        //引入ServiceWorkerToolbox后
+        toolbox.router.get('/image/:jpg', event => {
+            return caches.open('twemojii').then(res => {
+                return res.match(event.request).then(res => {
+                    return res || fetch(event.request)
+                })
+            }).catch(() => {
+                return fetch(event.request)
             })
-        }
+        }, {
+            // origin: 
+        })
     </script>
     <img src="https://img1.baidu.com/it/u=2198022577,4068255793&fm=26&fmt=auto&gp=0.jpg"/>
 </body>
