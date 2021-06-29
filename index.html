@@ -21,7 +21,7 @@
         //引入ServiceWorkerToolbox后
         console.log(toolbox)
         console.log(toolbox.router)
-        toolbox.router.get('/chaoydaozhan/images/', event => {
+        toolbox.router.get('/chaoydaozhan/images/*', event => {
             console.log(1)
             return caches.open('twemojii').then(res => {
                 console.log(2)
@@ -33,6 +33,8 @@
                 console.log(4)
                 return fetch(event.request)
             })
+        }, {
+            origin: 'chaoyidaozhan.github.io'
         })
     </script>
     <!-- <img src="https://img1.baidu.com/it/u=2198022577,4068255793&fm=26&fmt=auto&gp=0.jpg"/> -->
