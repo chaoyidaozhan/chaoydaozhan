@@ -4,8 +4,8 @@ self.addEventListener('install', event => {
         caches.open(cacheName)
         .then(cache => {
             cache.addAll([
-                '/sw.js',
-                '/images/unicorn.jpg'
+                './sw.js',
+                './images/unicorn.jpg'
             ])
         })
     )
