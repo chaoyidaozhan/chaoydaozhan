@@ -1,6 +1,6 @@
 var cacheName = 'helloWorld'
 self.addEventListener('install', event => {
-    event.waitUtil(
+    event.waitUntil(
         caches.open(cacheName)
         .then(cache => {
             //缓存
