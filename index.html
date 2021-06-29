@@ -21,7 +21,7 @@
         //引入ServiceWorkerToolbox后
         console.log(toolbox)
         console.log(toolbox.router)
-        toolbox.router.get('/image/:jpg', event => {
+        toolbox.router.get('/images/:jpg', event => {
             console.log(1)
             return caches.open('twemojii').then(res => {
                 console.log(2)
