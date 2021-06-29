@@ -9,19 +9,19 @@
 <body>
     <script src="https://cdn.bootcdn.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js"></script>
     <script>
-        // //注册 ServiceWorker
-        // if('serviceWorker' in navigator) {
-        //     navigator.serviceWorker.register('./sw.js').then(registration => {
-        //         console.log('ServiceWorker registration successful with scopes:', registration.scope)
-        //     }).catch(err => {
-        //         console.log('ServiceWorker registration failed:', err)
-        //     })
-        // }
+        //注册 ServiceWorker
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(registration => {
+                console.log('ServiceWorker registration successful with scopes:', registration.scope)
+            }).catch(err => {
+                console.log('ServiceWorker registration failed:', err)
+            })
+        }
 
         //引入ServiceWorkerToolbox后
         console.log(toolbox)
         console.log(toolbox.router)
-        toolbox.router.get('/chaoydaozhan/images/*', event => {
+        toolbox.router.get('/images/*', event => {
             console.log(1)
             return caches.open('twemojii').then(res => {
                 console.log(2)
