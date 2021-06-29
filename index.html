@@ -7,11 +7,13 @@
     <title>PWA</title>
 </head>
 <body>
-    <script src="https://cdn.bootcdn.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js"></script> -->
+    <script src="/sw.js"></script>
+    <img src="/images/unicorn.jpg"/>
     <script>
         //注册 ServiceWorker
         if('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js').then(registration => {
+            navigator.serviceWorker.register('./service-worker.js').then(registration => {
                 console.log('ServiceWorker registration successful with scopes:', registration.scope)
             }).catch(err => {
                 console.log('ServiceWorker registration failed:', err)
@@ -19,23 +21,18 @@
         }
 
         //引入ServiceWorkerToolbox后
-        console.log(toolbox)
-        console.log(toolbox.router)
-        toolbox.router.get('/images/*', event => {
-            console.log(1)
-            return caches.open('twemojii').then(res => {
-                console.log(2)
-                return res.match(event.request).then(res => {
-                    console.log(3)
-                    return res || fetch(event.request)
-                })
-            }).catch(() => {
-                console.log(4)
-                return fetch(event.request)
-            })
-        })
+        // console.log(toolbox)
+        // console.log(toolbox.router)
+        // toolbox.router.get('/images/*', event => {
+        //     return caches.open('twemojii').then(res => {
+        //         return res.match(event.request).then(res => {
+        //             return res || fetch(event.request)
+        //         })
+        //     }).catch(() => {
+        //         return fetch(event.request)
+        //     })
+        // })
     </script>
     <!-- <img src="https://img1.baidu.com/it/u=2198022577,4068255793&fm=26&fmt=auto&gp=0.jpg"/> -->
-    <img src="./images/unicorn.jpg"/>
 </body>
 </html>
