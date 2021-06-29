@@ -20,11 +20,15 @@
 
         //引入ServiceWorkerToolbox后
         toolbox.router.get('/image/:jpg', event => {
+            console.log(1)
             return caches.open('twemojii').then(res => {
+                console.log(2)
                 return res.match(event.request).then(res => {
+                    console.log(3)
                     return res || fetch(event.request)
                 })
             }).catch(() => {
+                console.log(4)
                 return fetch(event.request)
             })
         }, {
