@@ -18,7 +18,6 @@
         //     })
         // }
 
-        debugger
         //引入ServiceWorkerToolbox后
         toolbox.router.get('/image/:jpg', event => {
             return caches.open('twemojii').then(res => {
