@@ -24,3 +24,30 @@ self.addEventListener('fetch', event => {
         })
     )
 })
+
+self.addEventListener('fetch', e => {
+    e.respondWith(
+        caches.match(e.request) 
+        .then((res) => {
+            if(res) {
+                return res
+            }
+            var requestToCache = e.request.clone()
+            return fetch(requestToCache).then(res => {
+                if(!res || res.status !== 200) {
+                    return res
+                }
+
+                var responseToCache = response.clone();
+
+                caches.open(cacheName).then(
+                    cache => {
+                        cache.put(requestToCache, responseToCache)
+                    }
+                )
+                
+                return response
+            })
+        })
+    )
+})
