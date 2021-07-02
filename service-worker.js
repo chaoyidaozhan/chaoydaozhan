@@ -38,7 +38,7 @@ self.addEventListener('fetch', e => {
                     return res
                 }
 
-                var responseToCache = response.clone();
+                var responseToCache = res.clone();
 
                 caches.open(cacheName).then(
                     cache => {
@@ -46,7 +46,7 @@ self.addEventListener('fetch', e => {
                     }
                 )
                 
-                return response
+                return res
             })
         })
     )
