@@ -7,13 +7,7 @@
 //     workboxSw.strategies.cacheFirst()
 // )
 
-self.addEventListener('install', (e) => {
-    e.waitUntil(self.skipWaiting());
-})
 
-self.addEventListener('activate', (e) => {
-    e.waitUntil(self.clients.claim());
-})
 
 self.addEventListener('fetch', (e) => {
     if(/\.jpg$/.test(e.request.url)) {

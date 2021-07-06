@@ -20,6 +20,13 @@
             })
         }
 
+        self.addEventListener('install', (e) => {
+            e.waitUntil(self.skipWaiting());
+        })
+
+        self.addEventListener('activate', (e) => {
+            e.waitUntil(self.clients.claim());
+        })
         //引入ServiceWorkerToolbox后
         // console.log(toolbox)
         // console.log(toolbox.router)
