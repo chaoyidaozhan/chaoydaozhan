@@ -8,24 +8,34 @@
 // )
 
 self.addEventListener('fetch', e => {
-    if(/\.jpg$|.png$/.test(e.request.url)) {
-        var supportWebp = false;
-        if(e.request.headers.has('accept')) {
-            supportWebp = e.request.headers
-            .get('accept').includes('webp');
-        }
-
-        if(supportWebp) {
-            var req = e.request.clone();
-            var returnUrl = req.url.substr(0, req.url.lastIndexOf('.')) + '.webp';
+    if(e.request.headers.get('save-data')) {
+        if(e.request.url.includes('fonts.googleapis.com')) {
             e.respondWith(
-                fetch(returnUrl, {
-                    mode: 'no-cors'
-                })
+                new Response('', {status: 417, statusText: 'Ignore fonts to save data'})
             )
         }
     }
 })
+
+// self.addEventListener('fetch', e => {
+//     if(/\.jpg$|.png$/.test(e.request.url)) {
+//         var supportWebp = false;
+//         if(e.request.headers.has('accept')) {
+//             supportWebp = e.request.headers
+//             .get('accept').includes('webp');
+//         }
+
+//         if(supportWebp) {
+//             var req = e.request.clone();
+//             var returnUrl = req.url.substr(0, req.url.lastIndexOf('.')) + '.webp';
+//             e.respondWith(
+//                 fetch(returnUrl, {
+//                     mode: 'no-cors'
+//                 })
+//             )
+//         }
+//     }
+// })
 
 // self.addEventListener('fetch', (e) => {
 //     if(/\.jpg$/.test(e.request.url)) {
