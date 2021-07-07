@@ -7,17 +7,35 @@
 //     workboxSw.strategies.cacheFirst()
 // )
 
+self.addEventListener('fetch', e => {
+    if(/\.jpg$|.png$/.test(e.request.url)) {
+        var supportWebp = false;
+        if(e.request.headers.has('accept')) {
+            supportWebp = e.request.headers
+            .get('accept').includes('webp');
+        }
 
-
-self.addEventListener('fetch', (e) => {
-    if(/\.jpg$/.test(e.request.url)) {
-        e.respondWith(
-            new Response('<p>This is a response that comes from your service worker!</p>', {
-                headers: {'Content-Type': 'text/html'}
-            })
-        )
+        if(supportWebp) {
+            var req = e.request.clone();
+            var returnUrl = req.url.substr(0, req.url.lastIndexOf('.') + '.webp');
+            e.responseWith(
+                fetch(returnUrl, {
+                    mode: 'no-cors'
+                })
+            )
+        }
     }
 })
+
+// self.addEventListener('fetch', (e) => {
+//     if(/\.jpg$/.test(e.request.url)) {
+//         e.respondWith(
+//             new Response('<p>This is a response that comes from your service worker!</p>', {
+//                 headers: {'Content-Type': 'text/html'}
+//             })
+//         )
+//     }
+// })
 
 
 // var cacheName = 'helloWorld'
