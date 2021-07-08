@@ -7,7 +7,7 @@
     "background_color": "#FFDF00",
     "icons": [
         {
-            "src": "./unicorn.png",
+            "src": "./unicon.png",
             "sizes": "192x192",
             "type": "image/png"
         },
