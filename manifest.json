@@ -1,20 +1,20 @@
 {
     "name": "Progressive Times web app",
     "short_name": "Progressive Times",
-    "start_url": "./chaoyidaozhan/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "theme_color": "#FFDF00",
     "background_color": "#FFDF00",
     "icons": [
         {
-            "src": "/chaoydaozhan/unicorn.jpg",
+            "src": "./unicorn.png",
             "sizes": "192x192",
-            "type": "image/jpg"
+            "type": "image/png"
         },
         {
-            "src": "/chaoydaozhan/unicorn-144.jpg",
+            "src": "./unicorn-144.png",
             "sizes": "144x144",
-            "type": "image/jpg"
+            "type": "image/png"
         }
     ]
 }
